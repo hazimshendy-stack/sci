@@ -7,6 +7,7 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "oxlint",
+    "pretest": "npm run build",
     "test": "node scripts/verify-release.js",
     "preview": "vite preview"
   },
