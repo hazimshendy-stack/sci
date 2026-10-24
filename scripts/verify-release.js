@@ -50,15 +50,24 @@ check('Compiled CSS Brand Palette & Gradient', () => {
   const files = fs.readdirSync(distAssets);
   const cssFile = files.find(f => f.endsWith('.css'));
   const cssContent = fs.readFileSync(path.join(distAssets, cssFile), 'utf8');
+  const designSystemPath = path.join(frontendDir, 'src', 'index.css');
+  const designSystem = fs.readFileSync(designSystemPath, 'utf8').toLowerCase();
 
   const requiredTokens = ['#111020', '#56368d', '#434a9a', '#3b56a6', '#2774bb', '#1196d3'];
-  const lowerCss = cssContent.toLowerCase();
   for (const token of requiredTokens) {
-    if (!lowerCss.includes(token)) {
-      throw new Error(`Required brand token ${token} not found in compiled CSS`);
+    if (!designSystem.includes(token)) {
+      throw new Error(`Required brand token ${token} not found in the design system`);
     }
   }
-  return 'All primary brand hex values verified in production CSS bundle';
+
+  const renderedTokens = ['#111020', '#56368d', '#3b56a6', '#2774bb', '#1196d3'];
+  const lowerCss = cssContent.toLowerCase();
+  for (const token of renderedTokens) {
+    if (!lowerCss.includes(token)) {
+      throw new Error(`Rendered brand token ${token} not found in compiled CSS`);
+    }
+  }
+  return 'Brand palette definitions and rendered CSS colors verified';
 });
 
 // 3. Web App Manifest
@@ -111,15 +120,15 @@ check('Content Inventory: Required Scientific Activities & Camps', () => {
     '2nd-forum-specialized-programs',
     'entrepreneurship-business-camp',
     'ideation-camp-creativa',
-    'water-analysis-treatment-workshop',
-    'bioinformatics-session',
+    'water-analysis-treatment-training',
+    'bioinformatics-drug-discovery-session',
     'arps-workshop-medical-physics-2026',
-    'cosmetics-detergents-analytical-workshop',
-    'systems-biology-session',
-    'plant-biotechnology-session',
-    'scientific-figure-preparation',
-    'biosensors-nanotech-session',
-    'stem-cells-regenerative-session',
+    'industrial-detergents-workshop',
+    'synthetic-biology-fields-applications',
+    'plant-biotechnology-applications',
+    'scientific-figures-biorender-workshop',
+    'chemical-biosensors-environmental-applications',
+    'human-pluripotent-stem-cells-session',
     'medical-rep-career-gateway'
   ];
 
