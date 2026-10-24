@@ -1,12 +1,7 @@
 // Sci Infinity Service Worker
 const CACHE_NAME = 'sci-infinity-v4';
-const STATIC_ASSETS = [
-  '/',
-  '/index.html',
-  '/offline.html',
-  '/manifest.json',
-  '/images/logo.png'
-];
+const scopedUrl = (asset) => new URL(asset, self.registration.scope).toString();
+const STATIC_ASSETS = ['', 'index.html', 'offline.html', 'manifest.json', 'images/logo.png'].map(scopedUrl);
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
@@ -51,8 +46,8 @@ self.addEventListener('fetch', (event) => {
   if (event.request.mode === 'navigate' || event.request.headers.get('accept')?.includes('text/html')) {
     event.respondWith(
       fetch(event.request).catch(() => {
-        return caches.match('/offline.html').then((res) => {
-          return res || caches.match('/index.html');
+        return caches.match(scopedUrl('offline.html')).then((res) => {
+          return res || caches.match(scopedUrl('index.html'));
         });
       })
     );
@@ -79,7 +74,7 @@ self.addEventListener('fetch', (event) => {
         .catch(() => {
           // If offline and request is for an image, return logo
           if (event.request.destination === 'image') {
-            return caches.match('/images/logo.png');
+            return caches.match(scopedUrl('images/logo.png'));
           }
           return new Response('Network error', { status: 408, headers: { 'Content-Type': 'text/plain' } });
         });

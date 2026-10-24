@@ -2,6 +2,7 @@
 import { useLocale } from '../context/LocaleContext';
 import { committees, teamMembers } from '../data/seedData';
 import { Users, UserCheck } from 'lucide-react';
+import { publicAsset } from '../lib/publicAsset';
 
 export const TeamView: React.FC = () => {
   const { t } = useLocale();
@@ -58,7 +59,7 @@ export const TeamView: React.FC = () => {
                     <div className="w-16 h-16 rounded-2xl overflow-hidden shrink-0 border border-brand-purple/30 bg-gray-100 flex items-center justify-center text-brand-purple font-bold text-lg">
                       {member.photo_url ? (
                         <img 
-                          src={member.photo_url} 
+                          src={publicAsset(member.photo_url)}
                           alt={member.name_ar} 
                           className="w-full h-full object-cover" 
                           onError={(e) => {

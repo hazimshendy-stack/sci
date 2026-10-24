@@ -2,6 +2,7 @@
 import { useLocale } from '../context/LocaleContext';
 import { aboutData } from '../data/seedData';
 import { Target, Compass, CheckCircle2 } from 'lucide-react';
+import { publicAsset } from '../lib/publicAsset';
 
 export const AboutView: React.FC = () => {
   const { t } = useLocale();
@@ -130,7 +131,7 @@ export const AboutView: React.FC = () => {
 
         <div className="max-w-3xl mx-auto rounded-2xl overflow-hidden border border-gray-300 shadow-md">
           <img 
-            src="/images/timeline-photo.png" 
+            src={publicAsset('/images/timeline-photo.png')}
             alt="Timeline Photo" 
             className="w-full h-auto object-contain"
             onError={(e) => {

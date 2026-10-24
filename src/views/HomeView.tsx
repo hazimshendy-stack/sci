@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useLocale } from '../context/LocaleContext';
 import { aboutData, activities, magazineIssues, podcastEpisodes, committees } from '../data/seedData';
 import { ArrowLeft, ArrowRight, BookOpen, Mic, Users, Calendar, CheckCircle, ExternalLink } from 'lucide-react';
+import { publicAsset } from '../lib/publicAsset';
 
 export const HomeView: React.FC = () => {
   const { locale, t, dir } = useLocale();
@@ -175,7 +176,7 @@ export const HomeView: React.FC = () => {
           <div className="p-8 rounded-3xl bg-white border border-gray-200 shadow-sm flex flex-col sm:flex-row gap-6 items-center">
             <div className="w-36 h-48 rounded-xl overflow-hidden shrink-0 shadow-md border border-gray-300 bg-gray-100 flex items-center justify-center">
               <img 
-                src={magazineIssues[0].cover_image_url} 
+                src={publicAsset(magazineIssues[0].cover_image_url)}
                 alt="Fudul Magazine Cover" 
                 className="w-full h-full object-cover" 
               />

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useLocale } from '../../context/LocaleContext';
 import { Globe, Menu, X, ArrowLeft, ArrowRight } from 'lucide-react';
+import { publicAsset } from '../../lib/publicAsset';
 
 export const Navbar: React.FC = () => {
   const { locale, setLocale, t, dir } = useLocale();
@@ -78,7 +79,7 @@ export const Navbar: React.FC = () => {
               aria-label="Sci Infinity Home"
             >
               <img 
-                src="/images/logo.png" 
+                src={publicAsset('/images/logo.png')}
                 alt="Sci Infinity Logo" 
                 className="h-14 sm:h-16 w-auto max-w-[180px] sm:max-w-[220px] object-contain drop-shadow-sm select-none" 
               />
@@ -147,7 +148,7 @@ export const Navbar: React.FC = () => {
               className="flex items-center gap-3 group"
             >
               <img 
-                src="/images/logo.png" 
+                src={publicAsset('/images/logo.png')}
                 alt="Sci Infinity" 
                 className="h-10 w-auto object-contain drop-shadow" 
               />
