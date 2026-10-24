@@ -2,7 +2,6 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import { LocaleProvider } from './context/LocaleContext';
 import { Navbar } from './components/layout/Navbar';
 import { Footer } from './components/layout/Footer';
-import { PwaInstallPrompt } from './components/common/PwaInstallPrompt';
 import { HomeView } from './views/HomeView';
 import { AboutView } from './views/AboutView';
 import { ActivitiesView } from './views/ActivitiesView';
@@ -10,6 +9,7 @@ import { ActivityDetailView } from './views/ActivityDetailView';
 import { TeamView } from './views/TeamView';
 import { MagazineView } from './views/MagazineView';
 import { PodcastView } from './views/PodcastView';
+import { EpisodeDetailView } from './views/EpisodeDetailView';
 import { ResearchView } from './views/ResearchView';
 import { JoinUsView } from './views/JoinUsView';
 import { ContactView } from './views/ContactView';
@@ -32,6 +32,7 @@ export default function App() {
             <Route path="/:locale/partners" element={<PartnersView />} />
             <Route path="/:locale/fudul" element={<MagazineView />} />
             <Route path="/:locale/sci-cast" element={<PodcastView />} />
+            <Route path="/:locale/sci-cast/episode/:episodeNumber" element={<EpisodeDetailView />} />
             <Route path="/:locale/research" element={<ResearchView />} />
             <Route path="/:locale/join-us" element={<JoinUsView />} />
             <Route path="/:locale/contact" element={<ContactView />} />
@@ -41,7 +42,6 @@ export default function App() {
           </Routes>
         </main>
         <Footer />
-        <PwaInstallPrompt />
       </div>
     </LocaleProvider>
   );

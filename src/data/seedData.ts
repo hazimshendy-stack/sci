@@ -68,15 +68,23 @@ export interface ResearchPaper {
 
 export interface PodcastEpisode {
   id?: string;
+  slug: string;
   episode_number: number;
   title_ar: string;
   title_en: string;
-  spotify_url: string;
-  youtube_url: string;
+  description_ar: string;
+  description_en: string;
+  spotify_url?: string;
+  youtube_url?: string;
+  facebook_url?: string;
+  cover_image_url?: string;
+  transcript_ar?: string;
+  transcript_en?: string;
   status: 'published' | 'draft';
-  verification_status: 'needs_verification';
+  verification_status: 'verified' | 'needs_verification';
   duration?: string;
   published_date?: string;
+  topics?: { title_ar: string; title_en: string }[];
 }
 
 export const siteSettings = {
@@ -149,9 +157,24 @@ export const teamMembers: TeamMember[] = [
 
 export const activities: Activity[] = [
   {
+    id: "act-000",
+    slug: "1st-forum-specialized-programs",
+    title_ar: "المنتدى العلمي الأول",
+    title_en: "The First Scientific Forum",
+    category: "conference",
+    event_state: "completed",
+    status: "published",
+    relationship_role: "co-organized",
+    verification_status: "verified",
+    date_display_ar: "فعالية سنوية سابقة",
+    date_display_en: "Past Annual Forum",
+    summary_ar: "النسخة الافتتاحية الأولى من المنتدى العلمي السنوي للمبادرة، والتي شملت منافسات طلابية وعروض أبحاث وبوسترات علمية بمشاركة واسعة من الباحثين والطلاب.",
+    summary_en: "The inaugural edition of the annual scientific forum featuring student research presentations, poster competitions, and academic evaluation panels."
+  },
+  {
     id: "act-001",
     slug: "2nd-forum-specialized-programs",
-    title_ar: "الملتقى الثاني لطلاب البرامج النوعية",
+    title_ar: "المنتدى الثاني لطلاب البرامج النوعية",
     title_en: "2nd Forum for Students of Specialized Programs",
     category: "conference",
     event_state: "completed",
@@ -160,8 +183,8 @@ export const activities: Activity[] = [
     verification_status: "verified",
     date_display_ar: "فعالية سنوية سابقة",
     date_display_en: "Past Annual Forum",
-    summary_ar: "تنظيم مسابقات البوسترات البحثية ومشاريع ريادة الأعمال والابتكار لطلاب البرامج النوعية بكلية العلوم جامعة المنصورة، بمشاركة مئات الطلاب وعشرات الفرق البحثية.",
-    summary_en: "Co-organizing scientific poster competitions and entrepreneurship innovation tracks for specialized program students at Mansoura University Faculty of Science."
+    summary_ar: "تنظيم مسابقات البوسترات البحثية ومشاريع ريادة الأعمال والابتكار لطلاب البرامج النوعية والتخصصات العلمية، بمشاركة مئات الطلاب وعشرات الفرق البحثية.",
+    summary_en: "Co-organizing scientific poster competitions and entrepreneurship innovation tracks for specialized programs and scientific disciplines."
   },
   {
     id: "act-002",
@@ -182,7 +205,7 @@ export const activities: Activity[] = [
     id: "act-003",
     slug: "ideation-camp-creativa",
     title_ar: "معسكر توليد الأفكار (Ideation Camp) بالتعاون مع كريتيفا",
-    title_en: "Ideation Camp — Sci Infinity × Creativa Hub Mansoura",
+    title_en: "Ideation Camp — Sci Infinity × Creativa Hub",
     category: "camp",
     event_state: "completed",
     status: "published",
@@ -190,8 +213,8 @@ export const activities: Activity[] = [
     verification_status: "verified",
     date_display_ar: "27 يناير",
     date_display_en: "27 January",
-    summary_ar: "ورش عمل مكثفة بالشراكة مع مركز إبداع مصر الرقمية (كريتيفا المنصورة) في التفكير التصميمي (Design Thinking)، ونموذج العمل التجاري، وبناء العروض التقديمية (Pitch Deck).",
-    summary_en: "Intensive workshops in collaboration with Creativa Hub Mansoura covering Design Thinking, Business Model Canvas, and Pitch Deck presentation."
+    summary_ar: "ورش عمل مكثفة بالشراكة مع مراكز إبداع مصر الرقمية (كريتيفا) في التفكير التصميمي (Design Thinking)، ونموذج العمل التجاري، وبناء العروض التقديمية (Pitch Deck).",
+    summary_en: "Intensive workshops in collaboration with Creativa Hub covering Design Thinking, Business Model Canvas, and Pitch Deck presentation."
   },
   {
     id: "act-004",
@@ -342,6 +365,51 @@ export const activities: Activity[] = [
     date_display_en: "Career Readiness Program",
     summary_ar: "جلسة إرشاد وتأهيل مهني لخريجي كليات العلوم والصيدلة، تغطي مهارات التواصل العلمي، تقنيات البيع الدوائي، وتحديات سوق العمل الطبي في مصر والوطن العربي.",
     summary_en: "Professional career readiness program for science and pharmacy students covering medical communication, pharmaceutical sales techniques, and market dynamics."
+  },
+  {
+    id: "act-014",
+    slug: "pr-training-program",
+    title_ar: "برنامج تدريب العلاقات العامة والتواصل المؤسسي (PR Training)",
+    title_en: "PR & Corporate Communications Training Program",
+    category: "training",
+    event_state: "completed",
+    status: "published",
+    relationship_role: "organized",
+    verification_status: "verified",
+    date_display_ar: "برنامج تدريبي تخصصي",
+    date_display_en: "Specialized Training Program",
+    summary_ar: "سلسلة تدريبية متكاملة حول مهارات العلاقات العامة، وإدارة الشراكات المؤسسية، والتواصل العلمي الفعال، وبناء الشبكات المهنية.",
+    summary_en: "Comprehensive training series on public relations strategies, institutional partnership management, and professional science communication."
+  },
+  {
+    id: "act-015",
+    slug: "scientific-research-program",
+    title_ar: "برنامج البحث العلمي وإعداد الباحثين (Scientific Research Program)",
+    title_en: "Scientific Research Program & Scholar Preparation",
+    category: "training",
+    event_state: "completed",
+    status: "published",
+    relationship_role: "organized",
+    verification_status: "verified",
+    date_display_ar: "مسار بحثي مكثف",
+    date_display_en: "Intensive Research Track",
+    summary_ar: "برنامج تأهيلي منهجي لتأسيس الباحثين الشباب في صياغة الفرضيات العلمية، ومراجعة الأدبيات، ومنهجيات البحث، واستيفاء معايير النشر الدولي.",
+    summary_en: "Systematic qualification program training young researchers on formulating scientific hypotheses, literature review, and academic methodology."
+  },
+  {
+    id: "act-016",
+    slug: "rd-training-series",
+    title_ar: "تدريب البحث والتطوير (R&D Training)",
+    title_en: "Research & Development (R&D) Training",
+    category: "training",
+    event_state: "completed",
+    status: "published",
+    relationship_role: "organized",
+    verification_status: "verified",
+    date_display_ar: "تدريب تطبيقي",
+    date_display_en: "Applied Training Series",
+    summary_ar: "سلسلة جلسات تدريبية متخصصة في البحث والتطوير، وربط مخرجات المعامل العلمية بالابتكار التطبيقي والصناعي وحل المشكلات التكنولوجية.",
+    summary_en: "Specialized training series in R&D, connecting laboratory breakthroughs to industrial applications and technological solutions."
   }
 ];
 
@@ -381,12 +449,63 @@ export const researchAchievements: ResearchPaper[] = [
 
 export const podcastEpisodes: PodcastEpisode[] = [
   {
+    id: "ep-001",
+    slug: "episode-1",
     episode_number: 1,
-    title_ar: "حلقة ساي كاست التعريفية",
-    title_en: "Sci Cast Episode 1",
-    spotify_url: "https://open.spotify.com/show/3pvNAboIN0Gh65kPVPeH8V?si=2FYBOTcASgKHHkcCklM_4Q",
-    youtube_url: "https://youtu.be/5wuvkOhxNLQ?si=-CqrLg63oNmyGGl3",
+    title_ar: "",
+    title_en: "",
+    description_ar: "",
+    description_en: "",
+    spotify_url: "",
+    youtube_url: "",
+    facebook_url: "",
     status: "published",
-    verification_status: "needs_verification"
+    verification_status: "needs_verification",
+    published_date: "2024"
+  },
+  {
+    id: "ep-002",
+    slug: "episode-2",
+    episode_number: 2,
+    title_ar: "",
+    title_en: "",
+    description_ar: "",
+    description_en: "",
+    spotify_url: "",
+    youtube_url: "",
+    facebook_url: "",
+    status: "published",
+    verification_status: "needs_verification",
+    published_date: "2024"
+  },
+  {
+    id: "ep-003",
+    slug: "episode-3",
+    episode_number: 3,
+    title_ar: "",
+    title_en: "",
+    description_ar: "",
+    description_en: "",
+    spotify_url: "",
+    youtube_url: "",
+    facebook_url: "",
+    status: "published",
+    verification_status: "needs_verification",
+    published_date: "2024"
+  },
+  {
+    id: "ep-004",
+    slug: "episode-4",
+    episode_number: 4,
+    title_ar: "",
+    title_en: "",
+    description_ar: "",
+    description_en: "",
+    spotify_url: "",
+    youtube_url: "",
+    facebook_url: "",
+    status: "published",
+    verification_status: "needs_verification",
+    published_date: "2024"
   }
 ];

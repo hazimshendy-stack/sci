@@ -1,8 +1,8 @@
-﻿import React from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { useLocale } from '../context/LocaleContext';
-import { aboutData, activities, magazineIssues, podcastEpisodes, committees } from '../data/seedData';
-import { ArrowLeft, ArrowRight, BookOpen, Mic, Users, Calendar, CheckCircle, ExternalLink } from 'lucide-react';
+import { activities, magazineIssues, podcastEpisodes, committees } from '../data/seedData';
+import { ArrowLeft, ArrowRight, BookOpen, Users, Calendar, Play, Headphones } from 'lucide-react';
 import { publicAsset } from '../lib/publicAsset';
 
 export const HomeView: React.FC = () => {
@@ -10,22 +10,18 @@ export const HomeView: React.FC = () => {
   const ArrowIcon = dir === 'rtl' ? ArrowLeft : ArrowRight;
 
   return (
-    <div className="space-y-20 pb-20">
+    <div className="space-y-24 py-6 pb-24">
       
       {/* 1. HERO SECTION */}
-      <section className="relative overflow-hidden pt-12 pb-20 lg:pt-20 lg:pb-28">
-        {/* Subtle background glow */}
+      <section className="relative overflow-hidden pt-6 pb-6">
         <div className="absolute top-0 right-1/4 w-96 h-96 bg-brand-purple/20 rounded-full blur-3xl -z-10 pointer-events-none"></div>
         <div className="absolute top-1/3 left-1/4 w-96 h-96 bg-brand-cyan/15 rounded-full blur-3xl -z-10 pointer-events-none"></div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-8">
-          
-          {/* Main Headline */}
           <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-gray-900 max-w-4xl mx-auto leading-tight">
             {t('نحو آفاق', 'Towards')} <span className="brand-gradient-text">{t('لا نهائية', 'Infinite Horizons')}</span> {t('من المعرفة والبحث', 'of Knowledge & Research')}
           </h1>
 
-          {/* Subtitle */}
           <p className="text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed font-normal">
             {t(
               'منصة طلابية وبحثية شاملة لتمكين الباحثين ورواد الأعمال، وتقديم دورات تخصصية ونشر الأوراق العلمية بالتعاون مع نخبة من الأكاديميين.',
@@ -33,7 +29,6 @@ export const HomeView: React.FC = () => {
             )}
           </p>
 
-          {/* Action Buttons */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
             <Link
               to={`/${locale}/join-us`}
@@ -42,7 +37,6 @@ export const HomeView: React.FC = () => {
               <span>{t('انضم كمتطوع في المبادرة', 'Join as a Volunteer')}</span>
               <ArrowIcon className="w-5 h-5" />
             </Link>
-
             <Link
               to={`/${locale}/projects-activities`}
               className="w-full sm:w-auto px-8 py-3.5 rounded-xl font-semibold text-gray-800 bg-gray-100 hover:bg-gray-200 border border-gray-300 transition-all flex items-center justify-center gap-2"
@@ -51,63 +45,33 @@ export const HomeView: React.FC = () => {
             </Link>
           </div>
 
-          {/* Key Metrics Strip */}
-          <div className="pt-12 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
+          {/* Key Metrics Strip — Unified text-brand-blue color across all 5 stat cards */}
+          <div className="pt-12 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 max-w-5xl mx-auto">
             <div className="p-4 rounded-xl bg-gray-50 border border-gray-200 text-center">
-              <div className="text-2xl sm:text-3xl font-extrabold text-brand-purple">18+</div>
-              <div className="text-xs sm:text-sm text-gray-500 mt-1">{t('عضو بفريق القيادة', 'Leadership Team')}</div>
+              <div className="text-2xl sm:text-3xl font-extrabold text-brand-blue">35</div>
+              <div className="text-xs sm:text-sm text-gray-500 mt-1">{t('أعضاء الفريق', 'Team Members')}</div>
             </div>
             <div className="p-4 rounded-xl bg-gray-50 border border-gray-200 text-center">
-              <div className="text-2xl sm:text-3xl font-extrabold text-brand-indigo">6</div>
+              <div className="text-2xl sm:text-3xl font-extrabold text-brand-blue">6</div>
               <div className="text-xs sm:text-sm text-gray-500 mt-1">{t('لجان تخصصية', 'Committees')}</div>
             </div>
             <div className="p-4 rounded-xl bg-gray-50 border border-gray-200 text-center">
-              <div className="text-2xl sm:text-3xl font-extrabold text-brand-blue">5+</div>
-              <div className="text-xs sm:text-sm text-gray-500 mt-1">{t('معسكرات وورش بحثية', 'Camps & Workshops')}</div>
+              <div className="text-2xl sm:text-3xl font-extrabold text-brand-blue">+10</div>
+              <div className="text-xs sm:text-sm text-gray-500 mt-1">{t('التدريبات والورش العلمية', 'Scientific Trainings & Workshops')}</div>
             </div>
             <div className="p-4 rounded-xl bg-gray-50 border border-gray-200 text-center">
-              <div className="text-2xl sm:text-3xl font-extrabold text-brand-cyan">1</div>
-              <div className="text-xs sm:text-sm text-gray-500 mt-1">{t('مجلة وبودكاست علمي', 'Magazine & Podcast')}</div>
+              <div className="text-2xl sm:text-3xl font-extrabold text-brand-blue">1</div>
+              <div className="text-xs sm:text-sm text-gray-500 mt-1">{t('مجلة علمية', 'Science Magazine')}</div>
+            </div>
+            <div className="p-4 rounded-xl bg-gray-50 border border-gray-200 text-center col-span-2 sm:col-span-1">
+              <div className="text-2xl sm:text-3xl font-extrabold text-brand-blue">4</div>
+              <div className="text-xs sm:text-sm text-gray-500 mt-1">{t('حلقات بودكاست', 'Podcast Episodes')}</div>
             </div>
           </div>
-
         </div>
       </section>
 
-      {/* 2. MISSION & VALUES */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="p-8 sm:p-12 rounded-3xl bg-gradient-to-br from-brand-purple/10 via-white to-brand-cyan/10 border border-brand-purple/20 shadow-sm space-y-8">
-          <div className="text-center max-w-3xl mx-auto space-y-3">
-            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">
-              {t('رسالة المبادرة وقيمها الأساسية', 'Our Mission & Core Values')}
-            </h2>
-            <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
-              {t(aboutData.mission_ar, aboutData.mission_en)}
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 pt-4">
-            {aboutData.values.map((v) => (
-              <div 
-                key={v.id} 
-                className="p-5 rounded-2xl bg-white border border-gray-200 shadow-sm hover:border-brand-purple/40 transition-all space-y-2"
-              >
-                <div className="w-9 h-9 rounded-lg bg-brand-purple/15 text-brand-purple flex items-center justify-center font-bold">
-                  <CheckCircle className="w-5 h-5" />
-                </div>
-                <h3 className="font-bold text-gray-900 text-base">
-                  {t(v.title_ar, v.title_en)}
-                </h3>
-                <p className="text-sm text-gray-600 leading-normal">
-                  {t(v.desc_ar, v.desc_en)}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 3. FEATURED ACTIVITIES & CAMPS */}
+      {/* 2. FEATURED ACTIVITIES & CAMPS */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
           <div>
@@ -151,7 +115,6 @@ export const HomeView: React.FC = () => {
                   {t(act.summary_ar, act.summary_en)}
                 </p>
               </div>
-
               <div className="pt-2 border-t border-gray-100 flex items-center justify-between text-xs text-gray-500">
                 <span>
                   {act.event_state === 'registration_closed' 
@@ -168,86 +131,151 @@ export const HomeView: React.FC = () => {
         </div>
       </section>
 
-      {/* 4. MAGAZINE & PODCAST HIGHLIGHT */}
+      {/* 3. DEDICATED FODUL MAGAZINE CARD */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          
-          {/* Fudul Magazine Card */}
-          <div className="p-8 rounded-3xl bg-white border border-gray-200 shadow-sm flex flex-col sm:flex-row gap-6 items-center">
-            <div className="w-36 h-48 rounded-xl overflow-hidden shrink-0 shadow-md border border-gray-300 bg-gray-100 flex items-center justify-center">
-              <img 
-                src={publicAsset(magazineIssues[0].cover_image_url)}
-                alt="Fudul Magazine Cover" 
-                className="w-full h-full object-cover" 
-              />
+        <div className="p-8 sm:p-12 rounded-3xl bg-white border border-gray-200 shadow-sm flex flex-col md:flex-row items-center gap-8">
+          <div className="w-40 h-56 sm:w-48 sm:h-64 rounded-2xl overflow-hidden shrink-0 shadow-lg border border-gray-200 bg-gray-100 flex items-center justify-center relative group">
+            <img 
+              src={publicAsset(magazineIssues[0].cover_image_url)}
+              alt="Fudul Magazine Cover" 
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" 
+            />
+          </div>
+          <div className="space-y-4 text-center md:text-start flex-1">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-purple/10 text-brand-purple text-xs font-bold uppercase tracking-wider">
+              <BookOpen className="w-4 h-4" />
+              <span>{t('مجلة فضول العلمية الرسمية', 'Official Fudul Science Magazine')}</span>
             </div>
-            <div className="space-y-3 text-center sm:text-start">
-              <div className="inline-flex items-center gap-1.5 text-xs font-bold text-brand-purple">
-                <BookOpen className="w-4 h-4" />
-                <span>{t('مجلة فضول العلمية', 'Fudul Magazine')}</span>
-              </div>
-              <h3 className="text-xl font-bold text-gray-900">
-                {t(magazineIssues[0].title_ar, magazineIssues[0].title_en)}
-              </h3>
-              <p className="text-sm text-gray-600">
-                {t(magazineIssues[0].description_ar, magazineIssues[0].description_en)}
-              </p>
-              <div className="pt-2">
-                <Link
-                  to={`/${locale}/fudul`}
-                  className="inline-flex items-center gap-2 text-sm font-semibold text-brand-purple hover:underline"
-                >
-                  <span>{t('تصفح تفاصيل المجلة', 'Explore Magazine')}</span>
-                  <ArrowIcon className="w-4 h-4" />
-                </Link>
-              </div>
+            <h2 className="text-2xl sm:text-4xl font-extrabold text-gray-900 leading-tight">
+              {t(magazineIssues[0].title_ar, magazineIssues[0].title_en)}
+            </h2>
+            <p className="text-base text-gray-600 leading-relaxed max-w-2xl">
+              {t(magazineIssues[0].description_ar, magazineIssues[0].description_en)}
+            </p>
+            <div className="pt-2">
+              <Link
+                to={`/${locale}/fudul`}
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-bold bg-brand-purple text-white hover:bg-brand-deep-purple transition-all shadow-sm"
+              >
+                <span>{t('تصفح أعداد وتفاصيل المجلة', 'Explore Magazine Issues')}</span>
+                <ArrowIcon className="w-4 h-4" />
+              </Link>
             </div>
           </div>
-
-          {/* Sci Cast Podcast Card */}
-          <div className="p-8 rounded-3xl bg-white border border-gray-200 shadow-sm flex flex-col justify-between space-y-6">
-            <div className="space-y-3">
-              <div className="inline-flex items-center gap-1.5 text-xs font-bold text-green-600">
-                <Mic className="w-4 h-4" />
-                <span>{t('بودكاست ساي كاست', 'Sci Cast Podcast')}</span>
-              </div>
-              <h3 className="text-xl font-bold text-gray-900">
-                {t('حوارات علمية تلهم الباحثين', 'Scientific Conversations Inspiring Researchers')}
-              </h3>
-              <p className="text-sm text-gray-600 leading-relaxed">
-                {t(
-                  'حلقات نقاشية صوتية ومرئية مع طلاب وباحثين وأساتذة متخصصين لمناقشة التحديات العلمية وسوق العمل.',
-                  'In-depth discussions with researchers and academics addressing research challenges and career prospects.'
-                )}
-              </p>
-            </div>
-
-            <div className="flex flex-wrap items-center gap-3 pt-2">
-              <a
-                href={podcastEpisodes[0].spotify_url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-4 py-2 rounded-xl text-xs font-semibold bg-green-500/10 text-green-700 hover:bg-green-500/20 border border-green-500/30 flex items-center gap-1.5 transition-all"
-              >
-                <span>Spotify</span>
-                <ExternalLink className="w-3.5 h-3.5" />
-              </a>
-              <a
-                href={podcastEpisodes[0].youtube_url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-4 py-2 rounded-xl text-xs font-semibold bg-red-500/10 text-red-700 hover:bg-red-500/20 border border-red-500/30 flex items-center gap-1.5 transition-all"
-              >
-                <span>YouTube</span>
-                <ExternalLink className="w-3.5 h-3.5" />
-              </a>
-            </div>
-          </div>
-
         </div>
       </section>
 
-      {/* 5. COMMITTEES OVERVIEW */}
+      {/* 4. FOUR DISTINCT SCI CAST EPISODE CARDS */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+          <div>
+            <span className="text-xs font-bold uppercase tracking-wider text-green-700">
+              {t('سلسلة البودكاست الصوتي والمرئي', 'Podcast Directory')}
+            </span>
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-gray-900 mt-1">
+              {t('حلقات بودكاست ساي كاست (Sci Cast)', 'Sci Cast Podcast Episodes')}
+            </h2>
+          </div>
+          <Link 
+            to={`/${locale}/sci-cast`}
+            className="inline-flex items-center gap-1.5 text-sm font-semibold text-green-700 hover:text-green-800 transition-colors"
+          >
+            <span>{t('صفحة البودكاست الرسمية', 'Official Podcast Hub')}</span>
+            <ArrowIcon className="w-4 h-4" />
+          </Link>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {podcastEpisodes.map((ep) => {
+            const hasTitle = (ep.title_ar && ep.title_ar.trim()) || (ep.title_en && ep.title_en.trim());
+            const hasDesc = (ep.description_ar && ep.description_ar.trim()) || (ep.description_en && ep.description_en.trim());
+            return (
+              <div
+                key={ep.episode_number}
+                className="p-6 rounded-3xl bg-white border border-gray-200 shadow-sm hover:border-brand-purple/40 hover:shadow-md transition-all flex flex-col justify-between space-y-4 group"
+              >
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between">
+                    <span className="px-2.5 py-1 rounded-lg bg-brand-purple/10 text-brand-purple text-xs font-bold">
+                      {t(`الحلقة ${ep.episode_number}`, `Episode ${ep.episode_number}`)}
+                    </span>
+                    <div className="w-8 h-8 rounded-full bg-green-500/10 text-green-700 flex items-center justify-center">
+                      <Headphones className="w-4 h-4" />
+                    </div>
+                  </div>
+
+                  {hasTitle ? (
+                    <h3 className="font-bold text-base text-gray-900 group-hover:text-brand-purple transition-colors leading-snug">
+                      {t(ep.title_ar, ep.title_en)}
+                    </h3>
+                  ) : (
+                    <div className="space-y-2 pt-1">
+                      <div className="h-5 rounded-lg bg-gray-100 w-3/4"></div>
+                    </div>
+                  )}
+
+                  {hasDesc ? (
+                    <p className="text-xs text-gray-600 line-clamp-3 leading-relaxed">
+                      {t(ep.description_ar, ep.description_en)}
+                    </p>
+                  ) : (
+                    <div className="space-y-2 pt-1">
+                      <div className="h-3 rounded bg-gray-100 w-full"></div>
+                      <div className="h-3 rounded bg-gray-100 w-5/6"></div>
+                      <div className="h-3 rounded bg-gray-100 w-2/3"></div>
+                    </div>
+                  )}
+                </div>
+
+                <div className="pt-3 border-t border-gray-100">
+                  <Link
+                    to={`/${locale}/sci-cast/episode/${ep.episode_number}`}
+                    className="inline-flex items-center gap-1.5 text-xs font-bold text-brand-purple hover:underline"
+                  >
+                    <Play className="w-3.5 h-3.5 fill-current" />
+                    <span>{t('الاستماع إلى الحلقة', 'Listen to Episode')}</span>
+                  </Link>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </section>
+
+      {/* 5. HOMEPAGE PARTNERSHIPS — Creativa Hub Mansoura */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+        <div className="text-center max-w-2xl mx-auto space-y-2">
+          <span className="text-xs font-bold uppercase tracking-wider text-brand-ocean">
+            {t('شركاء النجاح والمسيرة', 'Strategic Partners')}
+          </span>
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-gray-900">
+            {t('الشراكات والتعاون المؤسسي', 'Partnerships & Collaborations')}
+          </h2>
+        </div>
+
+        <div className="p-8 sm:p-10 rounded-3xl bg-white border border-gray-200 shadow-sm flex flex-col items-center justify-center text-center space-y-5">
+          <img 
+            src={publicAsset('/images/creativa-hub-logo.png')} 
+            alt="Creativa Hub Mansoura — مراكز إبداع مصر الرقمية" 
+            className="h-28 sm:h-36 w-auto object-contain mx-auto"
+          />
+          <p className="text-sm text-gray-600 max-w-lg leading-relaxed">
+            {t(
+              'شريك استضافة وتدريب لمعسكرات توليد الأفكار وورش التفكير التصميمي وريادة الأعمال واستضافة تسجيلات بودكاست ساي كاست (Sci Cast).',
+              'Hosting and training partner for Ideation Camps, Design Thinking workshops, and official media collaboration for Sci Cast podcast production.'
+            )}
+          </p>
+          <Link
+            to={`/${locale}/partners`}
+            className="inline-flex items-center gap-1.5 text-xs font-bold text-brand-ocean hover:underline"
+          >
+            <span>{t('عرض تفاصيل الشراكات', 'Explore Partnership Details')}</span>
+            <ArrowIcon className="w-3.5 h-3.5" />
+          </Link>
+        </div>
+      </section>
+
+      {/* 6. COMMITTEES OVERVIEW */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         <div className="text-center max-w-2xl mx-auto space-y-2">
           <span className="text-xs font-bold uppercase tracking-wider text-brand-ocean">
@@ -278,7 +306,7 @@ export const HomeView: React.FC = () => {
         </div>
       </section>
 
-      {/* 6. BOTTOM CALL TO ACTION */}
+      {/* 7. BOTTOM CALL TO ACTION */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="rounded-3xl p-8 sm:p-14 text-center brand-gradient-bg text-white space-y-6 shadow-xl shadow-brand-purple/20">
           <h2 className="text-3xl sm:text-4xl font-extrabold max-w-2xl mx-auto leading-tight">

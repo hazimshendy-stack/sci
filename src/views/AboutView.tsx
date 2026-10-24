@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { useLocale } from '../context/LocaleContext';
 import { aboutData } from '../data/seedData';
 import { Target, Compass, CheckCircle2 } from 'lucide-react';
@@ -20,8 +20,8 @@ export const AboutView: React.FC = () => {
         </h1>
         <p className="text-base sm:text-lg text-gray-600 leading-relaxed">
           {t(
-            'مبادرة طلابية وعلمية بكلية العلوم — جامعة المنصورة، تركز على بناء بيئة داعمة للبحث العلمي والابتكار ونقل المعرفة الأكاديمية إلى التطبيق العملي.',
-            'A student and scientific research initiative at the Faculty of Science, Mansoura University, committed to fostering innovation, academic rigor, and practical translation.'
+            'مبادرة طلابية وبحثية شاملة، تركز على بناء بيئة داعمة للبحث العلمي والابتكار ونقل المعرفة الأكاديمية إلى التطبيق العملي وسوق العمل.',
+            'A comprehensive student and scientific research initiative committed to fostering innovation, academic rigor, and practical translation.'
           )}
         </p>
       </div>

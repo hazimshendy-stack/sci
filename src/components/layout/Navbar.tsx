@@ -81,7 +81,7 @@ export const Navbar: React.FC = () => {
               <img 
                 src={publicAsset('/images/logo.png')}
                 alt="Sci Infinity Logo" 
-                className="h-12 sm:h-16 w-auto max-w-[48px] sm:max-w-[220px] object-contain drop-shadow-sm select-none"
+                className="h-14 sm:h-16 w-auto max-w-[56px] sm:max-w-[220px] object-contain drop-shadow-sm select-none"
               />
             </Link>
           </div>

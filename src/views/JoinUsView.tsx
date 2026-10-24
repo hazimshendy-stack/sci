@@ -152,7 +152,7 @@ export const JoinUsView: React.FC = () => {
                 required
                 value={formData.university}
                 onChange={(e) => setFormData({ ...formData, university: e.target.value })}
-                placeholder={t('جامعة المنصورة', 'Mansoura University')}
+                placeholder={t('اسم الجامعة المقيد بها', 'Your University')}
                 className="w-full px-4 py-2.5 rounded-xl bg-gray-50 border border-gray-200 text-sm text-gray-900 focus:outline-none focus:border-brand-purple"
               />
             </div>
@@ -164,7 +164,7 @@ export const JoinUsView: React.FC = () => {
                 required
                 value={formData.faculty}
                 onChange={(e) => setFormData({ ...formData, faculty: e.target.value })}
-                placeholder={t('كلية العلوم - كيمياء', 'Faculty of Science')}
+                placeholder={t('الكلية والتخصص الأكاديمي', 'Faculty & Major')}
                 className="w-full px-4 py-2.5 rounded-xl bg-gray-50 border border-gray-200 text-sm text-gray-900 focus:outline-none focus:border-brand-purple"
               />
             </div>
