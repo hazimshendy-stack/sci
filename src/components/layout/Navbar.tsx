@@ -53,10 +53,10 @@ export const Navbar: React.FC = () => {
   return (
     <>
       <header className="fixed top-0 left-0 right-0 z-40 brand-gradient-bg shadow-[0_2px_12px_rgba(0,0,0,0.12)]">
-        <div className="relative h-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+        <div className="relative h-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center sm:flex sm:justify-between">
           
           {/* Left / Start Control: Side Menu Hamburger Trigger */}
-          <div className="flex items-center gap-2 z-10">
+          <div className="flex items-center gap-2 z-10 justify-self-start">
             <button
               onClick={() => setIsDrawerOpen(true)}
               className="flex items-center gap-2 px-3 py-2 rounded-xl bg-white/10 hover:bg-white/20 active:bg-white/25 text-white transition-all focus:outline-none focus:ring-2 focus:ring-white/40"
@@ -71,8 +71,8 @@ export const Navbar: React.FC = () => {
             </button>
           </div>
 
-          {/* Center: Absolute Horizontally Centered Logo */}
-          <div className="absolute left-1/2 -translate-x-1/2 flex items-center justify-center pointer-events-none">
+          {/* Center: Horizontally Centered Logo */}
+          <div className="flex items-center justify-center pointer-events-none justify-self-center sm:absolute sm:left-1/2 sm:-translate-x-1/2">
             <Link 
               to={`/${locale}`} 
               className="pointer-events-auto flex items-center justify-center p-1 rounded-xl focus:outline-none focus:ring-2 focus:ring-white/40 transition-transform hover:scale-105"
@@ -81,17 +81,17 @@ export const Navbar: React.FC = () => {
               <img 
                 src={publicAsset('/images/logo.png')}
                 alt="Sci Infinity Logo" 
-                className="h-14 sm:h-16 w-auto max-w-[180px] sm:max-w-[220px] object-contain drop-shadow-sm select-none" 
+                className="h-12 sm:h-16 w-auto max-w-[48px] sm:max-w-[220px] object-contain drop-shadow-sm select-none"
               />
             </Link>
           </div>
 
           {/* Right / End Controls: Join Us CTA & Language Switcher */}
-          <div className="flex items-center gap-2 sm:gap-3 z-10">
+          <div className="flex items-center gap-1 sm:gap-3 z-10 justify-self-end">
             {/* Join Us CTA */}
             <Link
               to={`/${locale}/join-us`}
-              className="inline-flex items-center justify-center px-3 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-white text-brand-deep-purple hover:bg-white/95 active:scale-95 shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-white/40"
+              className="hidden sm:inline-flex items-center justify-center px-2 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-white text-brand-deep-purple hover:bg-white/95 active:scale-95 shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-white/40"
             >
               <span>{t('انضم إلينا', 'Join Us')}</span>
             </Link>
@@ -99,7 +99,7 @@ export const Navbar: React.FC = () => {
             {/* Language Switcher */}
             <button
               onClick={() => setLocale(locale === 'ar' ? 'en' : 'ar')}
-              className="flex items-center gap-1.5 px-2.5 sm:px-3 py-2 rounded-xl bg-white/10 hover:bg-white/20 active:bg-white/25 text-white text-xs font-semibold transition-all focus:outline-none focus:ring-2 focus:ring-white/40"
+              className="flex items-center gap-1.5 px-1.5 sm:px-3 py-2 rounded-xl bg-white/10 hover:bg-white/20 active:bg-white/25 text-white text-xs font-semibold transition-all focus:outline-none focus:ring-2 focus:ring-white/40"
               aria-label={locale === 'ar' ? 'Switch to English' : 'التحويل إلى العربية'}
             >
               <Globe className="w-3.5 h-3.5" />
