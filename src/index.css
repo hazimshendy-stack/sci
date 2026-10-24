@@ -1,0 +1,88 @@
+@import "tailwindcss";
+
+/* ─────────────────────────────────────────────────────────
+   Sci Infinity — Unified Design System
+   Light Mode Only (Clean #FFFFFF background)
+   ───────────────────────────────────────────────────────── */
+
+@theme {
+  /* Brand palette — from reference gradient stops */
+  --color-brand-deep-purple: #50347F;
+  --color-brand-purple: #56368D;
+  --color-brand-indigo: #434A9A;
+  --color-brand-blue: #3B56A6;
+  --color-brand-ocean: #2774BB;
+  --color-brand-cyan: #1196D3;
+  --color-brand-ink: #111020;
+
+  /* Reference specific gradient stops */
+  --color-ref-purple: #414B93;
+  --color-ref-blue: #2F61A0;
+  --color-ref-navy: #213766;
+  --color-ref-ocean: #2368A3;
+  --color-ref-cyan: #0F83B6;
+
+  /* Semantic surfaces - Light Mode Only */
+  --color-surface-light: #FFFFFF;
+  --color-surface-card: #FFFFFF;
+
+  /* Muted support */
+  --color-support-navy: #1D2E51;
+  --color-support-teal: #124B6F;
+  --color-support-mist: #F6FBF8;
+  --color-support-slate: #BFCCD8;
+
+  /* Typography — Playpen Sans Arabic (primary for both AR & EN) */
+  --font-sans: 'Playpen Sans Arabic', 'Noto Sans', sans-serif;
+  --font-arabic: 'Playpen Sans Arabic', 'Noto Sans', sans-serif;
+  --font-english: 'Playpen Sans Arabic', 'Noto Sans', sans-serif;
+}
+
+/* ── Brand gradient (exact reference match) ─── */
+:root {
+  --brand-gradient: linear-gradient(to right, #50347F, #414B93, #2F61A0, #213766, #2368A3, #0F83B6);
+}
+
+/* ── Global backgrounds ─── */
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Playpen Sans Arabic', 'Noto Sans', sans-serif !important;
+  overscroll-behavior: none;
+  -webkit-font-smoothing: antialiased;
+  background-color: #FFFFFF !important;
+  color: #191b25;
+}
+
+/* ── Utility classes ─── */
+.brand-gradient-bg {
+  background: var(--brand-gradient);
+}
+
+.brand-spectral-gradient {
+  background: var(--brand-gradient);
+}
+
+.brand-gradient-text {
+  background: var(--brand-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Scrollbar hiding (matches reference) ─── */
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* ── Selection ─── */
+::selection {
+  background-color: #50347F;
+  color: white;
+}
+
+/* dir-ltr utility for English snippets in RTL context */
+.dir-ltr {
+  direction: ltr;
+  unicode-bidi: isolate;
+}
