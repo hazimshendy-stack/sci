@@ -5,8 +5,7 @@ import { podcastEpisodes } from '../data/seedData';
 import { YouTubeEmbed } from '../components/common/YouTubeEmbed';
 import { SpotifyEmbed } from '../components/common/SpotifyEmbed';
 import { FacebookEmbed } from '../components/common/FacebookEmbed';
-import { TranscriptSection } from '../components/common/TranscriptSection';
-import { Radio, ArrowLeft, ArrowRight, Calendar, CheckCircle } from 'lucide-react';
+import { Headphones, ArrowLeft, ArrowRight, Calendar, CheckCircle, User } from 'lucide-react';
 
 export const EpisodeDetailView: React.FC = () => {
   const { episodeNumber } = useParams<{ episodeNumber: string }>();
@@ -42,6 +41,7 @@ export const EpisodeDetailView: React.FC = () => {
 
   const hasTitle = (episode.title_ar && episode.title_ar.trim()) || (episode.title_en && episode.title_en.trim());
   const hasDesc = (episode.description_ar && episode.description_ar.trim()) || (episode.description_en && episode.description_en.trim());
+  const hasGuest = (episode.guest_ar && episode.guest_ar.trim()) || (episode.guest_en && episode.guest_en.trim());
 
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-10">
@@ -64,8 +64,8 @@ export const EpisodeDetailView: React.FC = () => {
       {/* Episode Header */}
       <div className="space-y-4">
         <div className="flex flex-wrap items-center gap-3 text-xs">
-          <span className="px-3 py-1 rounded-full bg-green-500/10 text-green-700 font-bold flex items-center gap-1.5">
-            <Radio className="w-3.5 h-3.5" />
+          <span className="px-3 py-1 rounded-full bg-brand-purple/10 text-brand-purple font-bold flex items-center gap-1.5">
+            <Headphones className="w-3.5 h-3.5" />
             <span>Sci Cast Series</span>
           </span>
           {episode.published_date && (
@@ -74,31 +74,33 @@ export const EpisodeDetailView: React.FC = () => {
               <span>{episode.published_date}</span>
             </span>
           )}
-          <span className="px-3 py-1 rounded-full bg-brand-ocean/10 text-brand-ocean font-medium flex items-center gap-1">
+          <span className="px-3 py-1 rounded-full bg-brand-cyan/20 text-brand-ocean font-medium flex items-center gap-1">
             <CheckCircle className="w-3.5 h-3.5" />
             <span>{t('حلقة موثقة رسمياً', 'Verified Episode')}</span>
           </span>
         </div>
 
         {hasTitle ? (
-          <h1 className="text-3xl sm:text-5xl font-extrabold text-gray-900 leading-tight">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight">
             {t(episode.title_ar, episode.title_en)}
           </h1>
         ) : (
-          <h1 className="text-3xl sm:text-5xl font-extrabold text-gray-900 leading-tight">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight">
             {t(`الحلقة ${episode.episode_number}`, `Episode ${episode.episode_number}`)}
           </h1>
         )}
 
-        {hasDesc ? (
+        {hasGuest && (
+          <div className="flex items-center gap-2 text-base font-semibold text-brand-navy">
+            <User className="w-4 h-4 text-brand-purple" />
+            <span>{t(`ضيف الحلقة: ${episode.guest_ar}`, `Guest: ${episode.guest_en}`)}</span>
+          </div>
+        )}
+
+        {hasDesc && (
           <p className="text-base sm:text-lg text-gray-700 leading-relaxed pt-2">
             {t(episode.description_ar, episode.description_en)}
           </p>
-        ) : (
-          <div className="space-y-2 pt-2">
-            <div className="h-4 rounded bg-gray-100 w-full"></div>
-            <div className="h-4 rounded bg-gray-100 w-4/5"></div>
-          </div>
         )}
       </div>
 
@@ -108,53 +110,48 @@ export const EpisodeDetailView: React.FC = () => {
           {t('مشاهدة واستماع الحلقة', 'Watch & Listen')}
         </h2>
 
-        {/* YouTube Video Player (available for all episodes) */}
-        <div className="space-y-2">
-          <h3 className="text-sm font-semibold text-gray-700 flex items-center gap-2">
-            <span className="w-2.5 h-2.5 rounded-full bg-red-600 inline-block"></span>
-            <span>{t('مشغل الفيديو — YouTube', 'YouTube Video Stream')}</span>
-          </h3>
-          <YouTubeEmbed 
-            url={episode.youtube_url} 
-            title={t(episode.title_ar || `الحلقة ${episode.episode_number}`, episode.title_en || `Episode ${episode.episode_number}`)} 
-          />
-        </div>
-
-        {/* Spotify Audio Player (available for all episodes) */}
-        <div className="space-y-2 pt-2">
-          <h3 className="text-sm font-semibold text-gray-700 flex items-center gap-2">
-            <span className="w-2.5 h-2.5 rounded-full bg-[#1DB954] inline-block"></span>
-            <span>{t('مشغل الصوت — Spotify', 'Spotify Audio Player')}</span>
-          </h3>
-          <SpotifyEmbed 
-            url={episode.spotify_url} 
-            title={t(episode.title_ar || `الحلقة ${episode.episode_number}`, episode.title_en || `Episode ${episode.episode_number}`)} 
-          />
-        </div>
-
-        {/* Facebook Embed — conditional: only shown if Facebook URL exists for this specific episode */}
-        {episode.facebook_url && episode.facebook_url.trim() !== '' && (
-          <div className="space-y-2 pt-2">
-            <h3 className="text-sm font-semibold text-gray-700 flex items-center gap-2">
-              <span className="w-2.5 h-2.5 rounded-full bg-[#1877F2] inline-block"></span>
-              <span>{t('منشور الحلقة والتفاعل على فيسبوك', 'Facebook Discussion & Post')}</span>
+        {/* YouTube Video Player (if available) */}
+        {episode.youtube_url && episode.youtube_url.trim() !== '' && (
+          <div className="p-6 rounded-3xl bg-white border border-gray-200 shadow-sm space-y-3">
+            <h3 className="text-sm font-semibold text-gray-900 flex items-center gap-2">
+              <span className="w-2.5 h-2.5 rounded-full bg-red-600 inline-block"></span>
+              <span>{t('مشغل الفيديو — YouTube', 'YouTube Video Stream')}</span>
             </h3>
-            <FacebookEmbed 
-              url={episode.facebook_url} 
+            <YouTubeEmbed 
+              url={episode.youtube_url} 
               title={t(episode.title_ar || `الحلقة ${episode.episode_number}`, episode.title_en || `Episode ${episode.episode_number}`)} 
             />
           </div>
         )}
-      </div>
 
-      {/* Mandatory Transcript Component */}
-      <div className="pt-4">
-        <TranscriptSection 
-          transcriptAr={episode.transcript_ar}
-          transcriptEn={episode.transcript_en}
-          titleAr={episode.title_ar}
-          titleEn={episode.title_en}
-        />
+        {/* Spotify Audio Player (if available) */}
+        {episode.spotify_url && episode.spotify_url.trim() !== '' && (
+          <div className="p-6 rounded-3xl bg-white border border-gray-200 shadow-sm space-y-3">
+            <h3 className="text-sm font-semibold text-gray-900 flex items-center gap-2">
+              <span className="w-2.5 h-2.5 rounded-full bg-[#1DB954] inline-block"></span>
+              <span>{t('مشغل الصوت — Spotify', 'Spotify Audio Player')}</span>
+            </h3>
+            <SpotifyEmbed 
+              url={episode.spotify_url} 
+              title={t(episode.title_ar || `الحلقة ${episode.episode_number}`, episode.title_en || `Episode ${episode.episode_number}`)} 
+            />
+          </div>
+        )}
+
+        {/* Facebook Video Embed (if available) */}
+        {episode.facebook_url && episode.facebook_url.trim() !== '' && (
+          <div className="p-6 rounded-3xl bg-white border border-gray-200 shadow-sm space-y-3">
+            <h3 className="text-sm font-semibold text-gray-900 flex items-center gap-2">
+              <span className="w-2.5 h-2.5 rounded-full bg-[#1877F2] inline-block"></span>
+              <span>{t('فيديو الحلقة والتفاعل على فيسبوك (Facebook Video)', 'Facebook Video Stream & Discussion')}</span>
+            </h3>
+            <FacebookEmbed 
+              url={episode.facebook_url} 
+              type="video"
+              title={t(episode.title_ar || `الحلقة ${episode.episode_number}`, episode.title_en || `Episode ${episode.episode_number}`)} 
+            />
+          </div>
+        )}
       </div>
 
       {/* Navigation between Episodes */}

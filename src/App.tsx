@@ -1,5 +1,6 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { LocaleProvider } from './context/LocaleContext';
+import { ScrollToTop } from './components/common/ScrollToTop';
 import { Navbar } from './components/layout/Navbar';
 import { Footer } from './components/layout/Footer';
 import { HomeView } from './views/HomeView';
@@ -20,6 +21,7 @@ import { NotFoundView } from './views/NotFoundView';
 export default function App() {
   return (
     <LocaleProvider>
+      <ScrollToTop />
       <div className="flex flex-col min-h-screen bg-white">
         <Navbar />
         <main className="flex-1 pt-20 bg-white">

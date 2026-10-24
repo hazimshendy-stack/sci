@@ -41,14 +41,14 @@ export const HomeView: React.FC = () => {
               to={`/${locale}/projects-activities`}
               className="w-full sm:w-auto px-8 py-3.5 rounded-xl font-semibold text-gray-800 bg-gray-100 hover:bg-gray-200 border border-gray-300 transition-all flex items-center justify-center gap-2"
             >
-              <span>{t('استكشف المعسكرات والأنشطة', 'Explore Activities')}</span>
+              <span>{t('استكشف الأنشطة', 'Explore Activities')}</span>
             </Link>
           </div>
 
           {/* Key Metrics Strip — Unified text-brand-blue color across all 5 stat cards */}
           <div className="pt-12 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 max-w-5xl mx-auto">
             <div className="p-4 rounded-xl bg-gray-50 border border-gray-200 text-center">
-              <div className="text-2xl sm:text-3xl font-extrabold text-brand-blue">35</div>
+              <div className="text-2xl sm:text-3xl font-extrabold text-brand-blue">+35</div>
               <div className="text-xs sm:text-sm text-gray-500 mt-1">{t('أعضاء الفريق', 'Team Members')}</div>
             </div>
             <div className="p-4 rounded-xl bg-gray-50 border border-gray-200 text-center">
@@ -56,7 +56,7 @@ export const HomeView: React.FC = () => {
               <div className="text-xs sm:text-sm text-gray-500 mt-1">{t('لجان تخصصية', 'Committees')}</div>
             </div>
             <div className="p-4 rounded-xl bg-gray-50 border border-gray-200 text-center">
-              <div className="text-2xl sm:text-3xl font-extrabold text-brand-blue">+10</div>
+              <div className="text-2xl sm:text-3xl font-extrabold text-brand-blue">+20</div>
               <div className="text-xs sm:text-sm text-gray-500 mt-1">{t('التدريبات والورش العلمية', 'Scientific Trainings & Workshops')}</div>
             </div>
             <div className="p-4 rounded-xl bg-gray-50 border border-gray-200 text-center">
@@ -199,7 +199,7 @@ export const HomeView: React.FC = () => {
                     <span className="px-2.5 py-1 rounded-lg bg-brand-purple/10 text-brand-purple text-xs font-bold">
                       {t(`الحلقة ${ep.episode_number}`, `Episode ${ep.episode_number}`)}
                     </span>
-                    <div className="w-8 h-8 rounded-full bg-green-500/10 text-green-700 flex items-center justify-center">
+                    <div className="w-8 h-8 rounded-full bg-brand-purple/10 text-brand-purple flex items-center justify-center">
                       <Headphones className="w-4 h-4" />
                     </div>
                   </div>

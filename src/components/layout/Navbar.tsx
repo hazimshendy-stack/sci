@@ -12,7 +12,7 @@ export const Navbar: React.FC = () => {
   const navLinks = [
     { path: `/${locale}`, labelAr: 'الرئيسية', labelEn: 'Home' },
     { path: `/${locale}/about`, labelAr: 'عن المبادرة', labelEn: 'About the Initiative' },
-    { path: `/${locale}/projects-activities`, labelAr: 'الأنشطة والمعسكرات', labelEn: 'Activities & Camps' },
+    { path: `/${locale}/projects-activities`, labelAr: 'الأنشطة', labelEn: 'Activities' },
     { path: `/${locale}/team`, labelAr: 'فريق العمل واللجان', labelEn: 'Team & Committees' },
     { path: `/${locale}/partners`, labelAr: 'الشراكات المؤسسية', labelEn: 'Partnerships' },
     { path: `/${locale}/fudul`, labelAr: 'مجلة فضول العلمية', labelEn: 'Fudul Magazine' },
