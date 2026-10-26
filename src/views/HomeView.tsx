@@ -169,7 +169,7 @@ export const HomeView: React.FC = () => {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
           <div>
-            <span className="text-xs font-bold uppercase tracking-wider text-green-700">
+            <span className="text-xs font-bold uppercase tracking-wider text-brand-ocean">
               {t('سلسلة البودكاست الصوتي والمرئي', 'Podcast Directory')}
             </span>
             <h2 className="text-2xl sm:text-3xl font-extrabold text-gray-900 mt-1">
@@ -178,7 +178,7 @@ export const HomeView: React.FC = () => {
           </div>
           <Link 
             to={`/${locale}/sci-cast`}
-            className="inline-flex items-center gap-1.5 text-sm font-semibold text-green-700 hover:text-green-800 transition-colors"
+            className="inline-flex items-center gap-1.5 text-sm font-semibold text-brand-ocean hover:text-brand-cyan transition-colors"
           >
             <span>{t('صفحة البودكاست الرسمية', 'Official Podcast Hub')}</span>
             <ArrowIcon className="w-4 h-4" />
